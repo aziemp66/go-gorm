@@ -1,0 +1,20 @@
+package db
+
+import (
+	"log"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+func NewDB() *gorm.DB {
+	dsn := "host=localhost user=aziemp66 password=azie122333 dbname=go_gorm port=5432 sslmode=disable TimeZone=Asia/Jakarta"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+
+	log.Println("Database Connected")
+
+	return db
+}
