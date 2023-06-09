@@ -12,8 +12,7 @@ import (
 func TestCreateUser(t *testing.T) {
 	db := DB.NewDB()
 
-	userId, err := uuid.NewRandom()
-
+	userID, err := uuid.NewRandom()
 	if err != nil {
 		t.Error(err)
 	}
@@ -24,7 +23,7 @@ func TestCreateUser(t *testing.T) {
 	}
 
 	user := domain.User{
-		ID:        userId,
+		ID:        userID,
 		Name:      "Azie Melza Pratama",
 		CompanyID: companyID,
 		Age:       20,
