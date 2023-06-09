@@ -4,13 +4,13 @@ package db
 import (
 	"gorm.io/gorm"
 
-	"github.com/aziemp66/go-gorm/internal/repository"
+	domain "github.com/aziemp66/go-gorm/internal/domain"
 )
 
 // AutoMigrate : Automatically Migrate Database tables
 func AutoMigrate(db *gorm.DB) {
-	company := repository.Company{}
-	user := repository.User{}
+	company := &domain.Company{}
+	user := &domain.User{}
 
 	err := db.AutoMigrate(company)
 	if err != nil {

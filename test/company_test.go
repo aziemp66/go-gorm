@@ -5,14 +5,14 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/aziemp66/go-gorm/internal/repository"
+	domain "github.com/aziemp66/go-gorm/internal/domain"
 	DB "github.com/aziemp66/go-gorm/pkg/postgres"
 )
 
 func TestCreateCompany(t *testing.T) {
 	db := DB.NewDB()
 
-	company := repository.Company{
+	company := domain.Company{
 		ID:       uuid.NewString(),
 		Name:     "Azie's Company",
 		Networth: 3000000,
