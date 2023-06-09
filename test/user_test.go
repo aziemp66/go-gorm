@@ -1,7 +1,6 @@
 package test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/google/uuid"
@@ -31,10 +30,31 @@ func TestReadUser(t *testing.T) {
 	db := DB.NewDB()
 
 	user := domain.User{
-		ID: "0ba40e37-778e-4371-9b8b-6628376406a1",
+		ID: "42d0ed09-d41f-47d3-81bf-e59dea7ac9ac",
 	}
 
-	db.Joins("companies").First(&user)
+	db.Where(&user).First(&user)
 
-	fmt.Println(user.Company)
+	t.Log(user)
+}
+
+func TestJoinUserAndCompany(t *testing.T) {
+	db := DB.NewDB()
+
+	type Result struct {
+		Name     string
+		Networth string
+	}
+
+	result := Result{}
+
+	tx := db.Model(&domain.User{}).
+		Select("users.name", "companies.networth").
+		Joins("left join companies on companies.id = users.company_id").Scan(&result)
+
+	if tx.Error != nil {
+		t.Error(tx.Error)
+	}
+
+	t.Log(result)
 }
