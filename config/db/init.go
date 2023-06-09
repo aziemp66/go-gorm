@@ -1,3 +1,4 @@
+// Package db : db configuration
 package db
 
 import (
@@ -6,6 +7,7 @@ import (
 	"github.com/aziemp66/go-gorm/internal/repository"
 )
 
+// AutoMigrate : Automatically Migrate Database tables
 func AutoMigrate(db *gorm.DB) {
 	company := repository.Company{}
 	user := repository.User{}
