@@ -1,3 +1,4 @@
+// Package db : Database Config
 package db
 
 import (
@@ -7,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// NewDB : Return New Database Config
 func NewDB() *gorm.DB {
 	dsn := "host=localhost user=aziemp66 password=azie122333 dbname=go_gorm port=5432 sslmode=disable TimeZone=Asia/Jakarta"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
