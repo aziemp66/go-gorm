@@ -12,10 +12,21 @@ import (
 func TestCreateUser(t *testing.T) {
 	db := DB.NewDB()
 
+	userId, err := uuid.NewRandom()
+
+	if err != nil {
+		t.Error(err)
+	}
+
+	companyID, err := uuid.Parse("3f365a60-1cf6-4bcf-93f2-a90c6e3038a1")
+	if err != nil {
+		t.Error(err)
+	}
+
 	user := domain.User{
-		ID:        uuid.NewString(),
+		ID:        userId,
 		Name:      "Azie Melza Pratama",
-		CompanyID: "60d59c4c-c209-452d-8df9-c418f60bed25",
+		CompanyID: companyID,
 		Age:       20,
 	}
 
@@ -30,7 +41,7 @@ func TestReadUser(t *testing.T) {
 	db := DB.NewDB()
 
 	user := domain.User{
-		ID: "42d0ed09-d41f-47d3-81bf-e59dea7ac9ac",
+		ID: uuid.MustParse("42d0ed09-d41f-47d3-81bf-e59dea7ac9ac"),
 	}
 
 	db.Where(&user).First(&user)
@@ -50,7 +61,7 @@ func TestJoinUserAndCompany(t *testing.T) {
 
 	tx := db.Model(&domain.User{}).
 		Select("users.name", "companies.networth").
-		Joins("left join companies on companies.id = users.company_id").Scan(&result)
+		Joins("left join companies on companies.id = users.company_id").Limit(1).Scan(&result)
 
 	if tx.Error != nil {
 		t.Error(tx.Error)

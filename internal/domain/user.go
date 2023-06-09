@@ -1,13 +1,23 @@
 package repository
 
-import "gorm.io/gorm"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
+
+type Company struct {
+	gorm.Model
+	ID       uuid.UUID `gorm:"type:uuid;"`
+	Name     string
+	Networth float64
+}
 
 // Belong To Association
 type User struct {
 	gorm.Model
-	ID        string
+	ID        uuid.UUID `gorm:"type:uuid;"`
 	Name      string
 	Age       uint
-	CompanyID string
-	Company
+	CompanyID uuid.UUID `gorm:"type:uuid;"`
+	Company   Company
 }

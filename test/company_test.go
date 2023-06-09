@@ -12,8 +12,13 @@ import (
 func TestCreateCompany(t *testing.T) {
 	db := DB.NewDB()
 
+	companyId, err := uuid.NewRandom()
+	if err != nil {
+		t.Error(err)
+	}
+
 	company := domain.Company{
-		ID:       uuid.NewString(),
+		ID:       companyId,
 		Name:     "Azie's Company",
 		Networth: 3000000,
 	}
