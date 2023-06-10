@@ -28,4 +28,9 @@ func AutoMigrate(db *gorm.DB) {
 	if err != nil {
 		panic(err)
 	}
+
+	result := db.Exec(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`)
+	if result.Error != nil {
+		panic(result.Error)
+	}
 }

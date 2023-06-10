@@ -8,14 +8,17 @@ import (
 // Customer Model
 type Customer struct {
 	gorm.Model
-	ID         uuid.UUID `gorm:"type:uuid;"`
+	ID         uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
+	Name       string
 	CreditCard CreditCard
 }
 
 // CreditCard Model
 type CreditCard struct {
 	gorm.Model
-	ID         uuid.UUID `gorm:"type:uuid;"`
+	ID         uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Number     string
-	CustomerID uuid.UUID `gorm:"type:uuid;"`
+	Points     uint64    `gorm:"type:integer"`
+	IsBlocked  bool      `gorm:"default:false"`
+	CustomerID uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 }

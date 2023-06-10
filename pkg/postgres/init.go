@@ -6,6 +6,8 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	config "github.com/aziemp66/go-gorm/config/db"
 )
 
 // NewDB : Return New Database Config
@@ -17,6 +19,8 @@ func NewDB() *gorm.DB {
 	}
 
 	log.Println("Database Connected")
+
+	config.AutoMigrate(db)
 
 	return db
 }

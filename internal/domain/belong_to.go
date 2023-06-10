@@ -9,7 +9,7 @@ import (
 // Company Struct Model
 type Company struct {
 	gorm.Model
-	ID       uuid.UUID `gorm:"type:uuid;"`
+	ID       uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Name     string
 	Networth float64
 }
@@ -17,9 +17,9 @@ type Company struct {
 // User Struct Model
 type User struct {
 	gorm.Model
-	ID        uuid.UUID `gorm:"type:uuid;"`
+	ID        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Name      string
 	Age       uint
-	CompanyID uuid.UUID `gorm:"type:uuid;"`
+	CompanyID uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Company   Company
 }
