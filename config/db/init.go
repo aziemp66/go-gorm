@@ -29,6 +29,16 @@ func AutoMigrate(db *gorm.DB) {
 		panic(err)
 	}
 
+	err = db.AutoMigrate(&domain.Pawn{})
+	if err != nil {
+		panic(err)
+	}
+
+	err = db.AutoMigrate(&domain.PersonaWeapon{})
+	if err != nil {
+		panic(err)
+	}
+
 	result := db.Exec(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`)
 	if result.Error != nil {
 		panic(result.Error)
