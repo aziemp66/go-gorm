@@ -18,7 +18,7 @@ type CreditCard struct {
 	gorm.Model
 	ID         uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 	Number     string
-	Points     uint64    `gorm:"type:integer"`
+	Points     uint64
 	IsBlocked  bool      `gorm:"default:false"`
 	CustomerID uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
 }

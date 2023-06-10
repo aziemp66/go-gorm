@@ -32,3 +32,25 @@ func TestCreateCreditCard(t *testing.T) {
 		return
 	}
 }
+
+func TestReadCustomer(t *testing.T) {
+	var customers []domain.Customer
+	err := DB.Preload("CreditCard").Find(&customers).Error
+	if err != nil {
+		t.Error(err)
+	}
+	for _, v := range customers {
+		t.Log(v.CreditCard)
+	}
+}
+
+func TestReadCreditCard(t *testing.T) {
+	var creditCards []domain.CreditCard
+
+	err := DB.Find(&creditCards).Error
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log(creditCards)
+}
