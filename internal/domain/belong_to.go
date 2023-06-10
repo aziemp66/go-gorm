@@ -1,10 +1,12 @@
-package repository
+// Package domain is where the Database tables are modeled
+package domain
 
 import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
+// Company Struct Model
 type Company struct {
 	gorm.Model
 	ID       uuid.UUID `gorm:"type:uuid;"`
@@ -12,7 +14,7 @@ type Company struct {
 	Networth float64
 }
 
-// Belong To Association
+// User Struct Model
 type User struct {
 	gorm.Model
 	ID        uuid.UUID `gorm:"type:uuid;"`

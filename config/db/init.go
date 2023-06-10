@@ -9,14 +9,22 @@ import (
 
 // AutoMigrate : Automatically Migrate Database tables
 func AutoMigrate(db *gorm.DB) {
-	company := &domain.Company{}
-	user := &domain.User{}
-
-	err := db.AutoMigrate(company)
+	err := db.AutoMigrate(&domain.Company{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.AutoMigrate(user)
+
+	err = db.AutoMigrate(&domain.User{})
+	if err != nil {
+		panic(err)
+	}
+
+	err = db.AutoMigrate(&domain.Customer{})
+	if err != nil {
+		panic(err)
+	}
+
+	err = db.AutoMigrate(&domain.CreditCard{})
 	if err != nil {
 		panic(err)
 	}
