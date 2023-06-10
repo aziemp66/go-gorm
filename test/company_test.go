@@ -26,5 +26,6 @@ func TestCreateCompany(t *testing.T) {
 	result := db.Create(&company)
 	if result.Error != nil {
 		t.Error(result.Error)
+		return
 	}
 }

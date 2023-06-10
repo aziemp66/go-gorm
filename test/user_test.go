@@ -20,6 +20,7 @@ func TestCreateUser(t *testing.T) {
 	companyID, err := uuid.Parse("3f365a60-1cf6-4bcf-93f2-a90c6e3038a1")
 	if err != nil {
 		t.Error(err)
+		return
 	}
 
 	user := domain.User{
@@ -33,6 +34,7 @@ func TestCreateUser(t *testing.T) {
 
 	if result.Error != nil {
 		t.Error(result.Error)
+		return
 	}
 }
 
@@ -64,7 +66,22 @@ func TestJoinUserAndCompany(t *testing.T) {
 
 	if tx.Error != nil {
 		t.Error(tx.Error)
+		return
 	}
 
 	t.Log(result)
+}
+
+func TestBelongToEagerLoading(t *testing.T) {
+	db := DB.NewDB()
+
+	var user domain.User
+
+	tx := db.Preload("Company").Find(&user)
+	if tx.Error != nil {
+		t.Error(tx.Error)
+		return
+	}
+
+	t.Log(user.Company)
 }
